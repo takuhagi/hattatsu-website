@@ -49,7 +49,7 @@ module.exports = async (req, res) => {
             return res.status(400).json({ error: 'Invalid plan selected' });
         }
 
-        const origin = req.headers.origin || req.headers.referer?.replace(/\/[^/]*$/, '') || 'https://hattatsu-website.vercel.app';
+        const origin = req.headers.origin || req.headers.referer?.replace(/\/[^/]*$/, '') || 'https://hattatsu-tokusei-strategy.com';
 
         const sessionParams = {
             payment_method_types: ['card'],
