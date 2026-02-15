@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>能力とは何か | 発達特性とうまく付き合うための研究所</title>
+    <meta name="description" content="能力とは環境や関係性によって変動する「現象」である。能力主義に縛られず、自分の必勝パターンを見つけるための考え方。">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'base': '#FAFBFC',
+                        'section-alt': '#F0F4F8',
+                        'card': '#FFFFFF',
+                        'teal': '#3DBDB4',
+                        'teal-dark': '#2FA89F',
+                        'teal-light': '#E8F8F6',
+                        'warm': '#D4A574',
+                        'warm-light': '#FDF5ED',
+                        'heading': '#1E293B',
+                        'body': '#475569',
+                        'light': '#94A3B8',
+                        'border': '#E2E8F0',
+                    },
+                    fontFamily: {
+                        'serif-jp': ['"Noto Serif JP"', 'serif'],
+                        'sans-jp': ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Noto Sans JP', sans-serif; }
+        .font-serif-jp { font-family: 'Noto Serif JP', serif; }
+        .divider { height: 1px; background: linear-gradient(90deg, transparent, #E2E8F0, transparent); }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body class="bg-base text-body overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-border">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="font-serif-jp text-teal text-lg tracking-wider font-semibold">
+                発達特性研究所
+            </a>
+            <div class="hidden md:flex items-center gap-8 text-sm text-body">
+                <a href="index.html" class="hover:text-teal transition-colors">トップ</a>
+                <a href="index.html#services" class="hover:text-teal transition-colors">サービス</a>
+                <a href="index.html#cta" class="bg-teal text-white px-5 py-2 rounded-full hover:bg-teal-dark transition-all text-xs tracking-wider font-medium">
+                    LINE登録はこちら
+                </a>
+            </div>
+            <button id="menu-toggle" class="md:hidden text-teal">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-border">
+            <div class="px-4 py-6 flex flex-col gap-4 text-sm text-body">
+                <a href="index.html" class="hover:text-teal transition-colors py-2">トップ</a>
+                <a href="index.html#services" class="hover:text-teal transition-colors py-2">サービス</a>
+                <a href="index.html#cta" class="bg-teal text-white px-4 py-3 rounded-full text-center hover:bg-teal-dark transition-all text-xs tracking-wider mt-2 font-medium">
+                    LINE登録はこちら
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="relative pt-32 pb-20 px-4 bg-gradient-to-b from-teal-light to-base">
+        <div class="max-w-3xl mx-auto text-center">
+            <p class="text-teal text-sm tracking-[0.3em] uppercase mb-6 font-medium">What is "Ability"?</p>
+            <h1 class="font-serif-jp text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8 text-heading">
+                能力とは、<br>
+                環境や関係性によって変動する<br>
+                <span class="text-teal">「現象」</span>である。
+            </h1>
+            <p class="text-body text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-light">
+                あなたに「能力がない」のではない。<br>
+                その能力が発揮される<span class="text-teal font-medium">環境と関係性</span>が、<br>
+                まだ揃っていないだけかもしれない。
+            </p>
+        </div>
+    </section>
+
+    <div class="divider max-w-md mx-auto"></div>
+
+    <!-- Section 1: 能力主義とは -->
+    <section class="py-24 px-4 bg-white">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <p class="text-warm text-sm tracking-[0.2em] mb-4 font-medium">CHAPTER 01</p>
+                <h2 class="font-serif-jp text-3xl md:text-4xl text-heading mb-4">
+                    <span class="text-warm">能力主義</span>という呪縛
+                </h2>
+                <p class="text-light text-sm">私たちはいつから「能力」に縛られるようになったのか</p>
+            </div>
+
+            <div class="space-y-8 fade-in">
+                <!-- 成績表からの刷り込み -->
+                <div class="bg-base border border-border rounded-2xl p-8 md:p-10">
+                    <h3 class="font-serif-jp text-xl text-heading mb-4">成績表が刷り込んだ「能力」の幻想</h3>
+                    <div class="space-y-4 text-body text-sm leading-relaxed">
+                        <p>
+                            会社で働く、社会人として生活する。<br>
+                            そのとき、私たちはつい考えてしまう。
+                        </p>
+                        <div class="bg-warm-light border border-warm/20 rounded-xl p-6 my-6">
+                            <p class="text-heading text-base font-medium text-center leading-relaxed">
+                                「自分の<span class="text-warm">能力</span>」<br>
+                                「自分の<span class="text-warm">スキル</span>」<br>
+                                「自分が出した<span class="text-warm">成果</span>」
+                            </p>
+                        </div>
+                        <p>
+                            その思考の根っこは、実は小学校にまで遡る。
+                        </p>
+                        <p>
+                            小学校、中学校、高校。<br>
+                            私たちは常に<span class="text-heading font-medium">個人に成績表をつけられてきた。</span>
+                        </p>
+                        <p>
+                            「自分は足が速いけど、国語は苦手」<br>
+                            「算数は得意だけど、体育はダメ」
+                        </p>
+                        <p>
+                            こうして、私たちの頭は自然と<span class="text-heading font-medium">能力主義</span>に寄っていく。<br>
+                            自分には固定的な「能力」があると信じ込んでしまう。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 相対評価の真実 -->
+                <div class="bg-base border border-border rounded-2xl p-8 md:p-10">
+                    <h3 class="font-serif-jp text-xl text-heading mb-4">「結果」は、現象でしかない</h3>
+                    <div class="space-y-4 text-body text-sm leading-relaxed">
+                        <p>
+                            でも、立ち止まって考えてほしい。
+                        </p>
+                        <p>
+                            あなたが「足が速い」と評価されたのは、<br>
+                            <span class="text-teal font-medium">その日、その時、その集団の中で</span>発揮したものが、<br>
+                            結果として<span class="text-heading font-medium">相対的に評価されただけ</span>ではないだろうか。
+                        </p>
+
+                        <div class="border-l-4 border-teal pl-6 my-8" style="border-color: #3DBDB4;">
+                            <div class="space-y-3 text-heading text-base">
+                                <p>部活のレギュラー争いも。</p>
+                                <p>大学試験も。</p>
+                                <p>研究も。</p>
+                                <p>就活も。</p>
+                            </div>
+                        </div>
+
+                        <p>
+                            そこで得られた結果は、あなたに<span class="text-heading font-medium">絶対的な能力やスキルがあった</span>わけではない。
+                        </p>
+                        <p>
+                            <span class="text-teal font-medium">相対的に能力やスキルがあるように評価され、<br>
+                            現象として顕現しただけ</span>なのだ。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 核心メッセージ -->
+                <div class="bg-teal-light border-2 border-teal/30 rounded-2xl p-8 md:p-12 text-center">
+                    <p class="font-serif-jp text-xl md:text-2xl text-heading leading-relaxed">
+                        結果がある ＝<br class="md:hidden">
+                        <span class="text-teal font-bold text-2xl md:text-3xl">いつでもその人が<br>能力を発揮するとはならない。</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider max-w-md mx-auto"></div>
+
+    <!-- Section 2: 能力とは -->
+    <section class="py-24 px-4 bg-base">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <p class="text-teal text-sm tracking-[0.2em] mb-4 font-medium">CHAPTER 02</p>
+                <h2 class="font-serif-jp text-3xl md:text-4xl text-heading mb-4">
+                    <span class="text-teal">能力</span>とは何か
+                </h2>
+                <p class="text-light text-sm">内的リソースと外的リソースの融合が生む「現象」</p>
+            </div>
+
+            <div class="space-y-8 fade-in">
+                <!-- 能力の可視化 -->
+                <div class="bg-white border border-border rounded-2xl p-8 md:p-10 shadow-sm">
+                    <h3 class="font-serif-jp text-xl text-heading mb-4">能力は「発揮」されてはじめて見える</h3>
+                    <div class="space-y-4 text-body text-sm leading-relaxed">
+                        <p>
+                            能力は、<span class="text-heading font-medium">発揮されることで</span>はじめて可視化され、評価される。
+                        </p>
+                        <p>
+                            そして、その「発揮」は──<br>
+                            <span class="text-teal font-medium">内的リソース</span>と<span class="text-warm font-medium">外的リソース</span>の<span class="text-heading font-medium">融合</span>によって現れる。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- リソース図解 -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-teal-light border border-teal/20 rounded-2xl p-8">
+                        <div class="text-center mb-6">
+                            <div class="inline-block w-16 h-16 bg-teal/10 rounded-full flex items-center justify-center mb-3">
+                                <span class="text-3xl">&#x1F9E0;</span>
+                            </div>
+                            <h4 class="font-serif-jp text-lg text-teal font-semibold">内的リソース</h4>
+                            <p class="text-teal/70 text-xs mt-1">Internal Resources</p>
+                        </div>
+                        <ul class="space-y-3 text-body text-sm">
+                            <li class="flex items-start gap-3">
+                                <span class="text-teal mt-0.5">&#x25CF;</span>
+                                <span>個人の<span class="text-heading font-medium">経験</span></span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-teal mt-0.5">&#x25CF;</span>
+                                <span>もともとの<span class="text-heading font-medium">才能</span></span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-teal mt-0.5">&#x25CF;</span>
+                                <span><span class="text-heading font-medium">得意なこと</span>・好きなこと</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-warm-light border border-warm/20 rounded-2xl p-8">
+                        <div class="text-center mb-6">
+                            <div class="inline-block w-16 h-16 bg-warm/10 rounded-full flex items-center justify-center mb-3">
+                                <span class="text-3xl">&#x1F30D;</span>
+                            </div>
+                            <h4 class="font-serif-jp text-lg text-warm font-semibold">外的リソース</h4>
+                            <p class="text-warm/70 text-xs mt-1">External Resources</p>
+                        </div>
+                        <ul class="space-y-3 text-body text-sm">
+                            <li class="flex items-start gap-3">
+                                <span class="text-warm mt-0.5">&#x25CF;</span>
+                                <span>あなたを取り巻く<span class="text-heading font-medium">環境</span></span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-warm mt-0.5">&#x25CF;</span>
+                                <span>周囲との<span class="text-heading font-medium">人間関係</span></span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-warm mt-0.5">&#x25CF;</span>
+                                <span>チーム・組織の<span class="text-heading font-medium">構造</span></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 融合の図 -->
+                <div class="text-center py-6 fade-in">
+                    <div class="inline-flex items-center gap-4 text-light">
+                        <span class="text-teal font-serif-jp text-lg">内的リソース</span>
+                        <span class="text-3xl">&#x00D7;</span>
+                        <span class="text-warm font-serif-jp text-lg">外的リソース</span>
+                        <span class="text-3xl">=</span>
+                        <span class="text-heading font-serif-jp text-lg font-bold">能力の発揮</span>
+                    </div>
+                </div>
+
+                <!-- 会社での成果評価 -->
+                <div class="bg-white border border-border rounded-2xl p-8 md:p-10 shadow-sm">
+                    <h3 class="font-serif-jp text-xl text-heading mb-4">なぜ「成果評価」は当てにならないのか</h3>
+                    <div class="space-y-4 text-body text-sm leading-relaxed">
+                        <p>
+                            会社の「成果評価」でもよくあることだが、<br>
+                            <span class="text-heading font-medium">個人ごとの絶対評価は不可能</span>だ。
+                        </p>
+
+                        <div class="bg-section-alt rounded-xl p-6 my-6 space-y-3">
+                            <div class="flex items-start gap-3">
+                                <span class="text-warm mt-0.5">&#x25B6;</span>
+                                <p>プロジェクトによっては外部影響が大きく、<br><span class="text-heading font-medium">個人の力ではどうやっても成果は出ない</span>こともある</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="text-warm mt-0.5">&#x25B6;</span>
+                                <p>上司からの印象、昇格面接のときの印象によっても<br><span class="text-heading font-medium">結果は変わる</span></p>
+                            </div>
+                        </div>
+
+                        <div class="border-l-4 border-warm pl-6 my-8" style="border-color: #D4A574;">
+                            <p class="text-heading text-base md:text-lg font-medium leading-relaxed">
+                                結果が悪くても、<br>
+                                決して<span class="text-teal">自分に能力がない</span>わけではない。<br><br>
+                                かといって、<br>
+                                <span class="text-warm">普遍の能力</span>など元々ない。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 核心メッセージ2 -->
+                <div class="bg-teal-light border-2 border-teal/30 rounded-2xl p-8 md:p-12 text-center fade-in">
+                    <p class="text-teal text-sm tracking-[0.2em] mb-4 font-medium">KEY INSIGHT</p>
+                    <p class="font-serif-jp text-xl md:text-2xl text-heading leading-relaxed">
+                        能力は固定されたものではなく、<br>
+                        <span class="text-teal font-bold text-2xl md:text-3xl">環境と関係性の中で<br>立ち現れる「現象」</span><br>
+                        である。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider max-w-md mx-auto"></div>
+
+    <!-- Section 3: 必勝パターン -->
+    <section class="py-24 px-4 bg-white">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <p class="text-teal text-sm tracking-[0.2em] mb-4 font-medium">CHAPTER 03</p>
+                <h2 class="font-serif-jp text-3xl md:text-4xl text-heading mb-4">
+                    では、<span class="text-teal">どうすればいい</span>のか
+                </h2>
+                <p class="text-light text-sm">能力が「現象」なら、現象を起こす側に回ればいい</p>
+            </div>
+
+            <div class="space-y-8 fade-in">
+                <div class="bg-base border border-border rounded-2xl p-8 md:p-10">
+                    <h3 class="font-serif-jp text-xl text-heading mb-6">「自分の必勝パターン」を作る</h3>
+                    <div class="space-y-4 text-body text-sm leading-relaxed">
+                        <p>
+                            能力が環境によって変わる「現象」なら、<br>
+                            やるべきことは明確だ。
+                        </p>
+                        <p class="text-heading font-medium text-base">
+                            <span class="text-teal">自分が勝てる環境</span>を見つけ、<br>
+                            その環境を<span class="text-teal">意図的に作り出す</span>こと。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white border border-teal/20 rounded-2xl p-8 text-center shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-14 h-14 bg-teal-light rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl">&#x1F443;</span>
+                        </div>
+                        <h4 class="text-heading font-medium text-sm mb-3">嗅覚</h4>
+                        <p class="text-body text-xs leading-relaxed">
+                            自分が<span class="text-teal font-medium">絶対に勝てる状況</span>に身を置く嗅覚を磨く
+                        </p>
+                    </div>
+                    <div class="bg-white border border-teal/20 rounded-2xl p-8 text-center shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-14 h-14 bg-teal-light rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl">&#x1F3AF;</span>
+                        </div>
+                        <h4 class="text-heading font-medium text-sm mb-3">戦略</h4>
+                        <p class="text-body text-xs leading-relaxed">
+                            そのような状況を<span class="text-teal font-medium">意図的に作り出す</span>戦略を持つ
+                        </p>
+                    </div>
+                    <div class="bg-white border border-teal/20 rounded-2xl p-8 text-center shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-14 h-14 bg-teal-light rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl">&#x1F91D;</span>
+                        </div>
+                        <h4 class="text-heading font-medium text-sm mb-3">委譲</h4>
+                        <p class="text-body text-xs leading-relaxed">
+                            安定して結果を出すために<span class="text-teal font-medium">苦手なことは人にお願いする</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-teal-light border-2 border-teal/30 rounded-2xl p-8 md:p-12 fade-in">
+                    <div class="space-y-4 text-body text-sm leading-relaxed">
+                        <p>
+                            「能力がないから頑張らなきゃ」ではない。<br>
+                            「環境が合っていないから、調整しよう」でいい。
+                        </p>
+                        <p class="text-heading font-medium text-base md:text-lg">
+                            自分の得意を活かせる場所を見つけ、<br>
+                            苦手な部分は仕組みで補う。
+                        </p>
+                        <p>
+                            それが、発達特性を持つ人の<span class="text-teal font-bold">「必勝パターン」</span>だ。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider max-w-md mx-auto"></div>
+
+    <!-- 当事者メッセージ -->
+    <section class="py-24 px-4 bg-base">
+        <div class="max-w-3xl mx-auto fade-in">
+            <div class="text-center mb-12">
+                <p class="text-warm text-sm tracking-[0.2em] mb-4 font-medium">FROM THE FOUNDER</p>
+                <h2 class="font-serif-jp text-3xl md:text-4xl text-heading mb-4">
+                    私自身も、<span class="text-warm">当事者</span>です。
+                </h2>
+            </div>
+
+            <div class="bg-white border border-border rounded-2xl p-8 md:p-12 shadow-sm">
+                <div class="space-y-5 text-body text-sm leading-relaxed">
+                    <p>
+                        この研究所を立ち上げた理由は、<br>
+                        まさに<span class="text-heading font-medium">自分自身が発達特性の当事者</span>だからです。
+                    </p>
+                    <p>
+                        学校では「なんでみんなと同じようにできないの？」と言われ、<br>
+                        職場では同じ失敗を繰り返し、<br>
+                        「努力が足りない」「やる気がないのか」と何度も言われてきました。
+                    </p>
+                    <p>
+                        でも、あるとき気づいたんです。
+                    </p>
+                    <div class="border-l-4 border-teal pl-6 my-8" style="border-color: #3DBDB4;">
+                        <p class="font-serif-jp text-heading text-base md:text-lg leading-relaxed">
+                            自分に能力がないんじゃない。<br>
+                            能力が発揮される<span class="text-teal font-bold">環境にいなかった</span>だけだ。
+                        </p>
+                    </div>
+                    <p>
+                        自分の特性を整理し、合わない環境を離れ、<br>
+                        得意なことに集中できる場所を意図的に選ぶようになってから、<br>
+                        人生は大きく変わりました。
+                    </p>
+                    <p>
+                        だからこそ、同じように悩んでいる人に伝えたい。
+                    </p>
+                    <div class="bg-teal-light border border-teal/20 rounded-xl p-6 mt-6">
+                        <p class="font-serif-jp text-heading text-base md:text-lg text-center leading-relaxed">
+                            あなたに能力がないのではない。<br>
+                            <span class="text-teal font-bold">調整</span>が、まだ済んでいないだけです。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider max-w-md mx-auto"></div>
+
+    <!-- CTA -->
+    <section class="py-24 px-4 bg-gradient-to-b from-teal-light to-base">
+        <div class="max-w-2xl mx-auto text-center fade-in">
+            <h2 class="font-serif-jp text-3xl md:text-4xl text-heading mb-6">
+                あなたの<span class="text-teal">「必勝パターン」</span>を<br>
+                一緒に見つけませんか？
+            </h2>
+            <p class="text-body text-sm leading-relaxed mb-8 max-w-md mx-auto">
+                特性を整理し、環境を調整する。<br>
+                それだけで、日常は大きく変わります。
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="index.html#cta" class="inline-flex items-center gap-3 bg-[#06C755] hover:bg-[#05B04C] text-white font-bold px-10 py-5 rounded-full text-base transition-all hover:scale-105 shadow-lg shadow-[#06C755]/20">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+                    LINE友だち追加
+                </a>
+                <a href="index.html#services" class="inline-flex items-center gap-3 bg-teal hover:bg-teal-dark text-white font-bold px-10 py-5 rounded-full text-base transition-all hover:scale-105">
+                    サービスを見る
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-border py-12 px-4 bg-white">
+        <div class="max-w-5xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-light text-xs">
+                <p>&copy; 2026 発達特性とうまく付き合うための研究所 All Rights Reserved.</p>
+                <div class="flex gap-6">
+                    <a href="index.html" class="hover:text-teal transition-colors">トップページ</a>
+                    <a href="privacy.html" class="hover:text-teal transition-colors">プライバシーポリシー</a>
+                    <a href="tokushoho.html" class="hover:text-teal transition-colors">特定商取引法に基づく表記</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        document.getElementById('menu-toggle').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => document.getElementById('mobile-menu').classList.add('hidden'));
+        });
+    </script>
+</body>
+</html>
