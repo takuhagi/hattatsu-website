@@ -35,6 +35,8 @@
     <style>
         body { font-family: 'Noto Sans JP', sans-serif; }
         .font-serif-jp { font-family: 'Noto Serif JP', serif; }
+        .spinner { border: 3px solid #E2E8F0; border-top: 3px solid #3DBDB4; border-radius: 50%; width: 20px; height: 20px; animation: spin 0.8s linear infinite; display: inline-block; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="bg-base text-body">
@@ -48,6 +50,14 @@
 
     <main class="pt-28 pb-20 px-4">
         <div class="max-w-4xl mx-auto">
+
+            <!-- Canceled Banner -->
+            <div id="canceled-banner" class="hidden max-w-lg mx-auto mb-8">
+                <div class="bg-warm-light border border-warm/30 rounded-xl p-4 text-center">
+                    <p class="text-body text-sm">お支払いがキャンセルされました。もう一度お試しください。</p>
+                </div>
+            </div>
+
             <!-- Step Indicator -->
             <div class="flex justify-center mb-12">
                 <div class="flex items-center gap-3 text-sm">
@@ -63,7 +73,7 @@
                     <div class="w-8 border-t border-border"></div>
                     <div id="step3-indicator" class="flex items-center gap-2">
                         <div class="w-8 h-8 rounded-full border border-border text-light flex items-center justify-center text-xs">3</div>
-                        <span class="text-light hidden sm:inline">お支払い</span>
+                        <span class="text-light hidden sm:inline">確認・お支払い</span>
                     </div>
                 </div>
             </div>
@@ -72,20 +82,20 @@
             <div id="step1" class="max-w-3xl mx-auto">
                 <h2 class="font-serif-jp text-2xl text-center text-heading mb-8">プランをお選びください</h2>
                 <div class="grid md:grid-cols-3 gap-6">
-                    <button data-plan="light" data-price="5000" class="plan-btn bg-white border border-border rounded-xl p-6 text-left hover:border-teal/50 hover:shadow-md transition-all">
+                    <button data-plan="light" class="plan-btn bg-white border border-border rounded-xl p-6 text-left hover:border-teal/50 hover:shadow-md transition-all">
                         <div class="text-3xl mb-3">&#x1F50D;</div>
                         <h3 class="text-heading text-sm font-medium mb-1">特性クイック診断</h3>
                         <p class="text-teal text-lg font-serif-jp">¥5,000</p>
                         <p class="text-light text-xs mt-2">オンライン30分・レポート付き</p>
                     </button>
-                    <button data-plan="standard" data-price="15000" class="plan-btn bg-white border-2 border-teal/30 rounded-xl p-6 text-left hover:border-teal hover:shadow-md transition-all relative">
+                    <button data-plan="standard" class="plan-btn bg-white border-2 border-teal/30 rounded-xl p-6 text-left hover:border-teal hover:shadow-md transition-all relative">
                         <div class="absolute -top-3 right-4 bg-teal text-white text-xs font-bold px-3 py-1 rounded-full">人気</div>
                         <div class="text-3xl mb-3">&#x1F9E9;</div>
                         <h3 class="text-heading text-sm font-medium mb-1">特性把握セッション</h3>
                         <p class="text-teal text-lg font-serif-jp">¥15,000</p>
                         <p class="text-light text-xs mt-2">オンライン90分・調整プラン付き</p>
                     </button>
-                    <button data-plan="premium" data-price="39800" class="plan-btn bg-white border border-border rounded-xl p-6 text-left hover:border-teal/50 hover:shadow-md transition-all">
+                    <button data-plan="premium" class="plan-btn bg-white border border-border rounded-xl p-6 text-left hover:border-teal/50 hover:shadow-md transition-all">
                         <div class="text-3xl mb-3">&#x1F331;</div>
                         <h3 class="text-heading text-sm font-medium mb-1">継続調整プログラム</h3>
                         <p class="text-teal text-lg font-serif-jp">¥39,800<span class="text-xs text-light">/月</span></p>
@@ -100,17 +110,21 @@
                 <div class="bg-white border border-border rounded-2xl p-8 shadow-sm">
                     <div class="space-y-6">
                         <div>
-                            <label class="block text-body text-sm mb-2">お名前（ニックネーム可）</label>
-                            <input id="name" type="text" class="w-full bg-base border border-border rounded-lg px-4 py-3 text-heading text-sm focus:border-teal focus:outline-none transition-colors" placeholder="例：田中 太郎">
+                            <label class="block text-body text-sm mb-2">お名前（ニックネーム可）<span class="text-warm text-xs ml-1">必須</span></label>
+                            <input id="name" type="text" class="w-full bg-base border border-border rounded-lg px-4 py-3 text-heading text-sm focus:border-teal focus:outline-none transition-colors" placeholder="例：田中 太郎" required>
                         </div>
                         <div>
-                            <label class="block text-body text-sm mb-2">メールアドレス</label>
-                            <input id="email" type="email" class="w-full bg-base border border-border rounded-lg px-4 py-3 text-heading text-sm focus:border-teal focus:outline-none transition-colors" placeholder="例：example@email.com">
+                            <label class="block text-body text-sm mb-2">メールアドレス<span class="text-warm text-xs ml-1">必須</span></label>
+                            <input id="email" type="email" class="w-full bg-base border border-border rounded-lg px-4 py-3 text-heading text-sm focus:border-teal focus:outline-none transition-colors" placeholder="例：example@email.com" required>
+                            <p class="text-light text-xs mt-1">※ Stripeからの決済確認メールが届きます</p>
                         </div>
                         <div>
                             <label class="block text-body text-sm mb-2">お悩みの概要（任意）</label>
                             <textarea id="concern" rows="3" class="w-full bg-base border border-border rounded-lg px-4 py-3 text-heading text-sm focus:border-teal focus:outline-none transition-colors resize-none" placeholder="例：職場での人間関係に悩んでいます"></textarea>
                         </div>
+                    </div>
+                    <div id="step2-error" class="hidden mt-4 bg-warm-light border border-warm/30 rounded-lg p-3">
+                        <p class="text-warm text-xs" id="step2-error-text"></p>
                     </div>
                     <div class="mt-8 flex gap-4">
                         <button id="back-to-step1" class="flex-1 border border-border text-body py-3 rounded-full text-sm hover:border-teal/50 transition-colors">戻る</button>
@@ -119,11 +133,13 @@
                 </div>
             </div>
 
-            <!-- Step 3: Payment -->
+            <!-- Step 3: Confirm & Pay -->
             <div id="step3" class="hidden max-w-lg mx-auto">
-                <h2 class="font-serif-jp text-2xl text-center text-heading mb-8">お支払い</h2>
+                <h2 class="font-serif-jp text-2xl text-center text-heading mb-8">お申し込み内容の確認</h2>
                 <div class="bg-white border border-border rounded-2xl p-8 shadow-sm">
+                    <!-- Order Summary -->
                     <div class="border-b border-border pb-6 mb-6">
+                        <h3 class="text-light text-xs tracking-wider mb-4">ご注文内容</h3>
                         <div class="flex justify-between items-center">
                             <div>
                                 <p class="text-heading text-sm font-medium" id="selected-plan-name">-</p>
@@ -133,45 +149,56 @@
                         </div>
                     </div>
 
-                    <!-- Demo Payment Form -->
-                    <div class="space-y-6">
-                        <div>
-                            <label class="block text-body text-sm mb-2">カード番号</label>
-                            <input type="text" class="w-full bg-base border border-border rounded-lg px-4 py-3 text-heading text-sm focus:border-teal focus:outline-none" placeholder="4242 4242 4242 4242" maxlength="19">
-                        </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-body text-sm mb-2">有効期限</label>
-                                <input type="text" class="w-full bg-base border border-border rounded-lg px-4 py-3 text-heading text-sm focus:border-teal focus:outline-none" placeholder="MM/YY" maxlength="5">
+                    <!-- Customer Info Summary -->
+                    <div class="border-b border-border pb-6 mb-6">
+                        <h3 class="text-light text-xs tracking-wider mb-4">お客様情報</h3>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-light">お名前</span>
+                                <span class="text-heading" id="confirm-name">-</span>
                             </div>
-                            <div>
-                                <label class="block text-body text-sm mb-2">セキュリティコード</label>
-                                <input type="text" class="w-full bg-base border border-border rounded-lg px-4 py-3 text-heading text-sm focus:border-teal focus:outline-none" placeholder="123" maxlength="4">
+                            <div class="flex justify-between">
+                                <span class="text-light">メール</span>
+                                <span class="text-heading" id="confirm-email">-</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="mt-8 flex gap-4">
+                    <!-- Stripe Info -->
+                    <div class="bg-section-alt rounded-xl p-5 mb-6">
+                        <div class="flex items-center gap-3 mb-2">
+                            <svg class="w-5 h-5 text-teal flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                            </svg>
+                            <span class="text-heading text-sm font-medium">安全なお支払い</span>
+                        </div>
+                        <p class="text-body text-xs leading-relaxed">
+                            「お支払いへ進む」をクリックすると、Stripeの安全な決済ページに移動します。
+                            カード情報は当サイトには送信されません。
+                        </p>
+                    </div>
+
+                    <!-- Error -->
+                    <div id="pay-error" class="hidden mb-4 bg-warm-light border border-warm/30 rounded-lg p-3">
+                        <p class="text-warm text-xs" id="pay-error-text"></p>
+                    </div>
+
+                    <div class="flex gap-4">
                         <button id="back-to-step2" class="flex-1 border border-border text-body py-3 rounded-full text-sm hover:border-teal/50 transition-colors">戻る</button>
-                        <button id="pay-btn" class="flex-1 bg-gradient-to-r from-teal to-teal-dark text-white font-bold py-3 rounded-full text-sm hover:scale-105 transition-transform">お支払い</button>
+                        <button id="pay-btn" class="flex-1 bg-gradient-to-r from-teal to-teal-dark text-white font-bold py-4 rounded-full text-sm hover:scale-105 transition-transform flex items-center justify-center gap-2">
+                            <span id="pay-btn-text">お支払いへ進む</span>
+                            <span id="pay-btn-spinner" class="hidden spinner"></span>
+                        </button>
                     </div>
 
-                    <p class="text-light text-xs mt-6 text-center">
-                        ※ これはデモページです。実際の決済は行われません。<br>
-                        ※ 本番環境ではStripe決済を利用します。
-                    </p>
+                    <div class="mt-6 flex items-center justify-center gap-4 text-light text-xs">
+                        <span>対応カード：</span>
+                        <span>Visa</span>
+                        <span>Mastercard</span>
+                        <span>AMEX</span>
+                        <span>JCB</span>
+                    </div>
                 </div>
-            </div>
-
-            <!-- Step Complete -->
-            <div id="step-complete" class="hidden max-w-lg mx-auto text-center">
-                <div class="text-6xl mb-6">&#x2705;</div>
-                <h2 class="font-serif-jp text-2xl text-heading mb-4">お申し込みありがとうございます</h2>
-                <p class="text-body text-sm mb-8 leading-relaxed">
-                    LINE公式アカウントにて、セッションの日程調整のご連絡をお送りします。<br>
-                    しばらくお待ちください。
-                </p>
-                <a href="index.html" class="inline-block border border-teal text-teal px-8 py-3 rounded-full text-sm hover:bg-teal-light transition-colors">トップに戻る</a>
             </div>
         </div>
     </main>
@@ -187,17 +214,21 @@
     </footer>
 
     <script>
-        // Plan data
         const plans = {
-            light: { name: '特性クイック診断', desc: 'オンライン30分・診断レポート付き', price: 5000 },
-            standard: { name: '特性把握セッション', desc: 'オンライン90分・調整プラン付き', price: 15000 },
-            premium: { name: '継続調整プログラム', desc: '月2回セッション+LINE相談', price: 39800 }
+            light:    { name: '特性クイック診断',     desc: 'オンライン30分・診断レポート付き', price: 5000 },
+            standard: { name: '特性把握セッション',   desc: 'オンライン90分・調整プラン付き',   price: 15000 },
+            premium:  { name: '継続調整プログラム',   desc: '月2回セッション+LINE相談（月額）', price: 39800 }
         };
 
         let selectedPlan = null;
 
-        // URL param
+        // Show canceled banner if returning from Stripe
         const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('canceled') === 'true') {
+            document.getElementById('canceled-banner').classList.remove('hidden');
+        }
+
+        // Auto-select plan from URL param
         const planParam = urlParams.get('plan');
         if (planParam && plans[planParam]) {
             selectPlan(planParam);
@@ -224,7 +255,7 @@
         }
 
         function showStep(step) {
-            ['step1','step2','step3','step-complete'].forEach(id => document.getElementById(id).classList.add('hidden'));
+            ['step1','step2','step3'].forEach(id => document.getElementById(id).classList.add('hidden'));
             if (step === 1) document.getElementById('step1').classList.remove('hidden');
             if (step === 2) {
                 document.getElementById('step2').classList.remove('hidden');
@@ -235,11 +266,13 @@
                 const plan = plans[selectedPlan];
                 document.getElementById('selected-plan-name').textContent = plan.name;
                 document.getElementById('selected-plan-desc').textContent = plan.desc;
-                document.getElementById('selected-plan-price').textContent = '¥' + plan.price.toLocaleString();
+                const priceText = selectedPlan === 'premium'
+                    ? '¥' + plan.price.toLocaleString() + '/月'
+                    : '¥' + plan.price.toLocaleString();
+                document.getElementById('selected-plan-price').textContent = priceText;
+                document.getElementById('confirm-name').textContent = document.getElementById('name').value;
+                document.getElementById('confirm-email').textContent = document.getElementById('email').value;
                 updateStepIndicator(3);
-            }
-            if (step === 4) {
-                document.getElementById('step-complete').classList.remove('hidden');
             }
         }
 
@@ -258,10 +291,72 @@
             }
         }
 
+        // Step navigation
         document.getElementById('back-to-step1').addEventListener('click', () => { showStep(1); updateStepIndicator(1); });
-        document.getElementById('to-step3').addEventListener('click', () => showStep(3));
         document.getElementById('back-to-step2').addEventListener('click', () => { showStep(2); updateStepIndicator(2); });
-        document.getElementById('pay-btn').addEventListener('click', () => showStep(4));
+
+        // Step 2 → 3 validation
+        document.getElementById('to-step3').addEventListener('click', () => {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const errorEl = document.getElementById('step2-error');
+            const errorText = document.getElementById('step2-error-text');
+
+            if (!name) {
+                errorText.textContent = 'お名前を入力してください。';
+                errorEl.classList.remove('hidden');
+                return;
+            }
+            if (!email || !email.includes('@')) {
+                errorText.textContent = '正しいメールアドレスを入力してください。';
+                errorEl.classList.remove('hidden');
+                return;
+            }
+            errorEl.classList.add('hidden');
+            showStep(3);
+        });
+
+        // Pay button → Stripe Checkout
+        document.getElementById('pay-btn').addEventListener('click', async () => {
+            const btn = document.getElementById('pay-btn');
+            const btnText = document.getElementById('pay-btn-text');
+            const btnSpinner = document.getElementById('pay-btn-spinner');
+            const errorEl = document.getElementById('pay-error');
+            const errorText = document.getElementById('pay-error-text');
+
+            btn.disabled = true;
+            btnText.textContent = '処理中...';
+            btnSpinner.classList.remove('hidden');
+            errorEl.classList.add('hidden');
+
+            try {
+                const response = await fetch('/api/create-checkout-session', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        planId: selectedPlan,
+                        customerName: document.getElementById('name').value.trim(),
+                        customerEmail: document.getElementById('email').value.trim(),
+                        concern: document.getElementById('concern').value.trim(),
+                    }),
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || '決済セッションの作成に失敗しました');
+                }
+
+                // Redirect to Stripe Checkout
+                window.location.href = data.url;
+            } catch (err) {
+                errorText.textContent = err.message || 'エラーが発生しました。もう一度お試しください。';
+                errorEl.classList.remove('hidden');
+                btn.disabled = false;
+                btnText.textContent = 'お支払いへ進む';
+                btnSpinner.classList.add('hidden');
+            }
+        });
     </script>
 </body>
 </html>

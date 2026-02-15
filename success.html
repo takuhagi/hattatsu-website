@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お申し込み完了 | 発達特性とうまく付き合うための研究所</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'base': '#FAFBFC',
+                        'section-alt': '#F0F4F8',
+                        'card': '#FFFFFF',
+                        'teal': '#3DBDB4',
+                        'teal-dark': '#2FA89F',
+                        'teal-light': '#E8F8F6',
+                        'warm': '#D4A574',
+                        'warm-light': '#FDF5ED',
+                        'heading': '#1E293B',
+                        'body': '#475569',
+                        'light': '#94A3B8',
+                        'border': '#E2E8F0',
+                    },
+                    fontFamily: {
+                        'serif-jp': ['"Noto Serif JP"', 'serif'],
+                        'sans-jp': ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Noto Sans JP', sans-serif; }
+        .font-serif-jp { font-family: 'Noto Serif JP', serif; }
+        @keyframes checkmark {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .animate-check { animation: checkmark 0.6s ease-out forwards; }
+    </style>
+</head>
+<body class="bg-base text-body">
+
+    <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-border">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="font-serif-jp text-teal text-lg tracking-wider">発達特性研究所</a>
+            <a href="index.html" class="text-sm text-light hover:text-teal transition-colors">トップに戻る</a>
+        </div>
+    </nav>
+
+    <main class="min-h-screen flex items-center justify-center pt-20 pb-20 px-4">
+        <div class="max-w-lg mx-auto text-center">
+            <div class="animate-check mb-8">
+                <div class="w-24 h-24 bg-teal-light border-2 border-teal rounded-full flex items-center justify-center mx-auto">
+                    <svg class="w-12 h-12 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                    </svg>
+                </div>
+            </div>
+
+            <h1 class="font-serif-jp text-3xl text-heading mb-4">
+                お申し込みありがとうございます
+            </h1>
+
+            <p class="text-body text-sm leading-relaxed mb-8">
+                お支払いが完了しました。<br>
+                ご登録いただいたメールアドレスに確認メールをお送りしました。
+            </p>
+
+            <div class="bg-white border border-border rounded-2xl p-8 mb-8 shadow-sm text-left">
+                <h2 class="text-heading text-sm font-medium mb-4">今後の流れ</h2>
+                <ol class="space-y-4 text-body text-sm">
+                    <li class="flex items-start gap-3">
+                        <span class="flex-shrink-0 w-6 h-6 bg-teal-light text-teal rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                        <span>LINE公式アカウントより、セッションの<span class="text-heading font-medium">日程調整</span>のご連絡をお送りします</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="flex-shrink-0 w-6 h-6 bg-teal-light text-teal rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                        <span>ご都合の良い日時をお選びいただき、<span class="text-heading font-medium">セッション日を確定</span>します</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="flex-shrink-0 w-6 h-6 bg-teal-light text-teal rounded-full flex items-center justify-center text-xs font-bold">3</span>
+                        <span>当日はオンライン（Zoom）で<span class="text-heading font-medium">セッションを実施</span>いたします</span>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="bg-teal-light border border-teal/20 rounded-xl p-6 mb-8">
+                <p class="text-body text-sm">
+                    ご不明な点がございましたら、<br>
+                    <span class="text-teal font-medium">LINE公式アカウント</span>よりお気軽にお問い合わせください。
+                </p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="index.html" class="inline-block border border-teal text-teal px-8 py-3 rounded-full text-sm hover:bg-teal-light transition-colors font-medium">
+                    トップページに戻る
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="border-t border-border py-8 px-4">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-light text-xs">
+            <p>&copy; 2026 発達特性とうまく付き合うための研究所 All Rights Reserved.</p>
+            <div class="flex gap-6">
+                <a href="privacy.html" class="hover:text-teal transition-colors">プライバシーポリシー</a>
+                <a href="tokushoho.html" class="hover:text-teal transition-colors">特定商取引法に基づく表記</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

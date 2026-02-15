@@ -2,5 +2,8 @@
   "name": "hattatsu-website",
   "version": "1.0.0",
   "private": true,
-  "description": "発達特性とうまく付き合うための研究所 ウェブサイト"
+  "description": "発達特性とうまく付き合うための研究所 ウェブサイト",
+  "dependencies": {
+    "stripe": "^17.5.0"
+  }
 }
