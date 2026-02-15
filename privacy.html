@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プライバシーポリシー | 発達特性とうまく付き合うための研究所</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-bg': '#0F1628',
+                        'midnight': '#1A2640',
+                        'teal': '#4ECDC4',
+                        'soft': '#B5C4D4',
+                    },
+                    fontFamily: {
+                        'serif-jp': ['"Noto Serif JP"', 'serif'],
+                        'sans-jp': ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Noto Sans JP', sans-serif; }
+        .font-serif-jp { font-family: 'Noto Serif JP', serif; }
+        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+        .particle { position: absolute; border-radius: 50%; background: rgba(78,205,196,0.4); animation: fp var(--duration) ease-in-out infinite; }
+        @keyframes fp { 0%, 100% { opacity: 0.15; } 50% { opacity: 0.5; } }
+    </style>
+</head>
+<body class="bg-dark-bg text-white">
+    <div class="particles" id="particles"></div>
+
+    <nav class="fixed top-0 w-full z-50 bg-dark-bg/80 backdrop-blur-md border-b border-teal/10">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="font-serif-jp text-teal text-lg tracking-wider">発達特性研究所</a>
+            <a href="index.html" class="text-sm text-soft hover:text-teal transition-colors">トップに戻る</a>
+        </div>
+    </nav>
+
+    <main class="relative z-10 pt-28 pb-20 px-4">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-12">
+                <p class="text-teal/80 text-sm tracking-[0.2em] mb-4">PRIVACY POLICY</p>
+                <h1 class="font-serif-jp text-3xl text-white">プライバシーポリシー</h1>
+            </div>
+
+            <div class="bg-midnight/60 border border-soft/10 rounded-2xl p-8 md:p-12 space-y-8 text-soft/70 text-sm leading-relaxed">
+
+                <p>発達特性とうまく付き合うための研究所（以下「当研究所」）は、お客様の個人情報の保護を重要な責務と認識し、以下のプライバシーポリシーに基づき、適切な取り扱いと保護に努めます。</p>
+
+                <section>
+                    <h2 class="text-white text-base font-medium mb-3">1. 収集する個人情報</h2>
+                    <p>当研究所は、サービスの提供にあたり、以下の個人情報を収集することがあります。</p>
+                    <ul class="list-disc list-inside mt-2 space-y-1 ml-2">
+                        <li>お名前（ニックネーム可）</li>
+                        <li>メールアドレス</li>
+                        <li>ご相談内容・お悩みの概要</li>
+                        <li>特性診断・セッションでお伺いした情報</li>
+                        <li>決済に関する情報（カード情報はStripe社が直接管理し、当研究所は保持しません）</li>
+                        <li>LINE公式アカウントでのやり取り内容</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-white text-base font-medium mb-3">2. 個人情報の利用目的</h2>
+                    <p>収集した個人情報は、以下の目的でのみ使用いたします。</p>
+                    <ul class="list-disc list-inside mt-2 space-y-1 ml-2">
+                        <li>特性診断・セッションサービスの提供</li>
+                        <li>調整プラン・レポートの作成とお届け</li>
+                        <li>お客様からのお問い合わせへの対応</li>
+                        <li>サービスに関するご案内やお知らせの配信（LINE公式アカウント経由）</li>
+                        <li>サービスの改善・品質向上</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-white text-base font-medium mb-3">3. 個人情報の第三者提供</h2>
+                    <p>当研究所は、以下の場合を除き、お客様の個人情報を第三者に開示・提供いたしません。</p>
+                    <ul class="list-disc list-inside mt-2 space-y-1 ml-2">
+                        <li>お客様の同意がある場合</li>
+                        <li>法令に基づく場合</li>
+                        <li>人の生命、身体または財産の保護のために必要がある場合</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-white text-base font-medium mb-3">4. 個人情報の管理</h2>
+                    <p>当研究所は、お客様の個人情報の正確性を保ち、不正アクセス・紛失・破損・改ざんおよび漏洩などを防止するため、適切なセキュリティ対策を講じます。</p>
+                </section>
+
+                <section>
+                    <h2 class="text-white text-base font-medium mb-3">5. 決済情報の取り扱い</h2>
+                    <p>クレジットカード情報の処理は、PCI DSS準拠の決済サービス「Stripe」を通じて行われます。当研究所がお客様のカード番号を直接保持・保管することはありません。</p>
+                </section>
+
+                <section>
+                    <h2 class="text-white text-base font-medium mb-3">6. Cookieの使用</h2>
+                    <p>当サイトでは、サービスの利便性向上やアクセス解析のためにCookieを使用する場合があります。ブラウザの設定によりCookieの受け取りを拒否することも可能ですが、一部の機能がご利用いただけなくなる場合があります。</p>
+                </section>
+
+                <section>
+                    <h2 class="text-white text-base font-medium mb-3">7. 個人情報の開示・訂正・削除</h2>
+                    <p>お客様ご本人から個人情報の開示・訂正・削除のご請求があった場合は、ご本人確認の上、速やかに対応いたします。LINE公式アカウントまたはメールにてご連絡ください。</p>
+                </section>
+
+                <section>
+                    <h2 class="text-white text-base font-medium mb-3">8. セッション内容の守秘義務</h2>
+                    <p>セッションにおいてお伺いしたご相談内容、診断結果、調整プランの内容は厳重に秘密を守ります。お客様の許可なく、セッション内容を第三者に開示することは一切ありません。サイト等に掲載する体験者の声は、ご本人の許可を得た上で、個人が特定されない形で掲載しています。</p>
+                </section>
+
+                <section>
+                    <h2 class="text-white text-base font-medium mb-3">9. 免責事項</h2>
+                    <p>当研究所が提供するサービスは、発達特性に関する環境調整の支援を目的としたものであり、医療行為・診断・治療に代わるものではありません。サービスの結果に基づくお客様のご判断・行動については、お客様ご自身の責任において行っていただきますようお願いいたします。医療的なケアが必要な場合は、専門の医療機関をご受診ください。</p>
+                </section>
+
+                <section>
+                    <h2 class="text-white text-base font-medium mb-3">10. プライバシーポリシーの変更</h2>
+                    <p>当研究所は、必要に応じてプライバシーポリシーを変更することがあります。変更後のプライバシーポリシーは、当サイトに掲載した時点で効力を生じるものとします。</p>
+                </section>
+
+                <section>
+                    <h2 class="text-white text-base font-medium mb-3">11. お問い合わせ</h2>
+                    <p>個人情報の取り扱いに関するお問い合わせは、LINE公式アカウントよりご連絡ください。</p>
+                </section>
+
+                <div class="border-t border-soft/10 pt-6 mt-8 text-soft/40 text-xs">
+                    <p>制定日：2026年2月15日</p>
+                    <p>発達特性とうまく付き合うための研究所</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="relative z-10 border-t border-teal/10 py-8 px-4">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-soft/30 text-xs">
+            <p>&copy; 2026 発達特性とうまく付き合うための研究所 All Rights Reserved.</p>
+            <div class="flex gap-6">
+                <a href="index.html" class="hover:text-teal transition-colors">トップページ</a>
+                <a href="tokushoho.html" class="hover:text-teal transition-colors">特定商取引法に基づく表記</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const el = document.getElementById('particles');
+        for (let i = 0; i < 60; i++) {
+            const s = document.createElement('div'); s.className = 'particle';
+            const sz = Math.random() * 2 + 1;
+            s.style.width = sz+'px'; s.style.height = sz+'px';
+            s.style.left = Math.random()*100+'%'; s.style.top = Math.random()*100+'%';
+            s.style.setProperty('--duration', (Math.random()*3+2)+'s');
+            s.style.animationDelay = Math.random()*5+'s';
+            el.appendChild(s);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お申し込み | 発達特性とうまく付き合うための研究所</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-bg': '#0F1628',
+                        'midnight': '#1A2640',
+                        'deep-teal': '#1A3A4A',
+                        'teal': '#4ECDC4',
+                        'teal-dark': '#3BA89F',
+                        'warm': '#D4A574',
+                        'soft': '#B5C4D4',
+                    },
+                    fontFamily: {
+                        'serif-jp': ['"Noto Serif JP"', 'serif'],
+                        'sans-jp': ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Noto Sans JP', sans-serif; }
+        .font-serif-jp { font-family: 'Noto Serif JP', serif; }
+        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+        .particle { position: absolute; border-radius: 50%; animation: float-particle var(--duration) ease-in-out infinite; }
+        @keyframes float-particle { 0%, 100% { opacity: 0.15; } 50% { opacity: 0.6; } }
+    </style>
+</head>
+<body class="bg-dark-bg text-white">
+    <div class="particles" id="particles"></div>
+
+    <nav class="fixed top-0 w-full z-50 bg-dark-bg/80 backdrop-blur-md border-b border-teal/10">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="font-serif-jp text-teal text-lg tracking-wider">発達特性研究所</a>
+            <a href="index.html" class="text-sm text-soft hover:text-teal transition-colors">トップに戻る</a>
+        </div>
+    </nav>
+
+    <main class="relative z-10 pt-28 pb-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <!-- Step Indicator -->
+            <div class="flex justify-center mb-12">
+                <div class="flex items-center gap-3 text-sm">
+                    <div id="step1-indicator" class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-full bg-teal text-dark-bg flex items-center justify-center text-xs font-bold">1</div>
+                        <span class="text-teal hidden sm:inline">プラン選択</span>
+                    </div>
+                    <div class="w-8 border-t border-soft/30"></div>
+                    <div id="step2-indicator" class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-full border border-soft/30 text-soft/50 flex items-center justify-center text-xs">2</div>
+                        <span class="text-soft/50 hidden sm:inline">お客様情報</span>
+                    </div>
+                    <div class="w-8 border-t border-soft/30"></div>
+                    <div id="step3-indicator" class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-full border border-soft/30 text-soft/50 flex items-center justify-center text-xs">3</div>
+                        <span class="text-soft/50 hidden sm:inline">お支払い</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 1: Plan Selection -->
+            <div id="step1" class="max-w-3xl mx-auto">
+                <h2 class="font-serif-jp text-2xl text-center text-white mb-8">プランをお選びください</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <button data-plan="light" data-price="5000" class="plan-btn bg-midnight/60 border border-soft/10 rounded-xl p-6 text-left hover:border-teal/50 transition-all">
+                        <div class="text-3xl mb-3">&#x1F50D;</div>
+                        <h3 class="text-white text-sm font-medium mb-1">特性クイック診断</h3>
+                        <p class="text-teal text-lg font-serif-jp">¥5,000</p>
+                        <p class="text-soft/50 text-xs mt-2">オンライン30分・レポート付き</p>
+                    </button>
+                    <button data-plan="standard" data-price="15000" class="plan-btn bg-midnight/60 border border-teal/30 rounded-xl p-6 text-left hover:border-teal/50 transition-all relative">
+                        <div class="absolute -top-3 right-4 bg-teal text-dark-bg text-xs font-bold px-3 py-1 rounded-full">人気</div>
+                        <div class="text-3xl mb-3">&#x1F9E9;</div>
+                        <h3 class="text-white text-sm font-medium mb-1">特性把握セッション</h3>
+                        <p class="text-teal text-lg font-serif-jp">¥15,000</p>
+                        <p class="text-soft/50 text-xs mt-2">オンライン90分・調整プラン付き</p>
+                    </button>
+                    <button data-plan="premium" data-price="39800" class="plan-btn bg-midnight/60 border border-soft/10 rounded-xl p-6 text-left hover:border-teal/50 transition-all">
+                        <div class="text-3xl mb-3">&#x1F331;</div>
+                        <h3 class="text-white text-sm font-medium mb-1">継続調整プログラム</h3>
+                        <p class="text-teal text-lg font-serif-jp">¥39,800<span class="text-xs text-soft/50">/月</span></p>
+                        <p class="text-soft/50 text-xs mt-2">月2回セッション+LINE相談</p>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 2: Customer Info -->
+            <div id="step2" class="hidden max-w-lg mx-auto">
+                <h2 class="font-serif-jp text-2xl text-center text-white mb-8">お客様情報をご入力ください</h2>
+                <div class="bg-midnight/60 border border-soft/10 rounded-2xl p-8">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-soft/70 text-sm mb-2">お名前（ニックネーム可）</label>
+                            <input id="name" type="text" class="w-full bg-dark-bg border border-soft/20 rounded-lg px-4 py-3 text-white text-sm focus:border-teal/50 focus:outline-none transition-colors" placeholder="例：田中 太郎">
+                        </div>
+                        <div>
+                            <label class="block text-soft/70 text-sm mb-2">メールアドレス</label>
+                            <input id="email" type="email" class="w-full bg-dark-bg border border-soft/20 rounded-lg px-4 py-3 text-white text-sm focus:border-teal/50 focus:outline-none transition-colors" placeholder="例：example@email.com">
+                        </div>
+                        <div>
+                            <label class="block text-soft/70 text-sm mb-2">お悩みの概要（任意）</label>
+                            <textarea id="concern" rows="3" class="w-full bg-dark-bg border border-soft/20 rounded-lg px-4 py-3 text-white text-sm focus:border-teal/50 focus:outline-none transition-colors resize-none" placeholder="例：職場での人間関係に悩んでいます"></textarea>
+                        </div>
+                    </div>
+                    <div class="mt-8 flex gap-4">
+                        <button id="back-to-step1" class="flex-1 border border-soft/30 text-soft py-3 rounded-full text-sm hover:border-teal/50 transition-colors">戻る</button>
+                        <button id="to-step3" class="flex-1 bg-gradient-to-r from-teal to-teal-dark text-dark-bg font-bold py-3 rounded-full text-sm hover:scale-105 transition-transform">次へ</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Payment -->
+            <div id="step3" class="hidden max-w-lg mx-auto">
+                <h2 class="font-serif-jp text-2xl text-center text-white mb-8">お支払い</h2>
+                <div class="bg-midnight/60 border border-soft/10 rounded-2xl p-8">
+                    <div class="border-b border-soft/10 pb-6 mb-6">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-white text-sm font-medium" id="selected-plan-name">-</p>
+                                <p class="text-soft/50 text-xs mt-1" id="selected-plan-desc">-</p>
+                            </div>
+                            <p class="text-teal text-xl font-serif-jp" id="selected-plan-price">-</p>
+                        </div>
+                    </div>
+
+                    <!-- Demo Payment Form -->
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-soft/70 text-sm mb-2">カード番号</label>
+                            <input type="text" class="w-full bg-dark-bg border border-soft/20 rounded-lg px-4 py-3 text-white text-sm focus:border-teal/50 focus:outline-none" placeholder="4242 4242 4242 4242" maxlength="19">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-soft/70 text-sm mb-2">有効期限</label>
+                                <input type="text" class="w-full bg-dark-bg border border-soft/20 rounded-lg px-4 py-3 text-white text-sm focus:border-teal/50 focus:outline-none" placeholder="MM/YY" maxlength="5">
+                            </div>
+                            <div>
+                                <label class="block text-soft/70 text-sm mb-2">セキュリティコード</label>
+                                <input type="text" class="w-full bg-dark-bg border border-soft/20 rounded-lg px-4 py-3 text-white text-sm focus:border-teal/50 focus:outline-none" placeholder="123" maxlength="4">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 flex gap-4">
+                        <button id="back-to-step2" class="flex-1 border border-soft/30 text-soft py-3 rounded-full text-sm hover:border-teal/50 transition-colors">戻る</button>
+                        <button id="pay-btn" class="flex-1 bg-gradient-to-r from-teal to-teal-dark text-dark-bg font-bold py-3 rounded-full text-sm hover:scale-105 transition-transform">お支払い</button>
+                    </div>
+
+                    <p class="text-soft/30 text-xs mt-6 text-center">
+                        ※ これはデモページです。実際の決済は行われません。<br>
+                        ※ 本番環境ではStripe決済を利用します。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Step Complete -->
+            <div id="step-complete" class="hidden max-w-lg mx-auto text-center">
+                <div class="text-6xl mb-6">&#x2705;</div>
+                <h2 class="font-serif-jp text-2xl text-white mb-4">お申し込みありがとうございます</h2>
+                <p class="text-soft/60 text-sm mb-8 leading-relaxed">
+                    LINE公式アカウントにて、セッションの日程調整のご連絡をお送りします。<br>
+                    しばらくお待ちください。
+                </p>
+                <a href="index.html" class="inline-block border border-teal/40 text-teal px-8 py-3 rounded-full text-sm hover:bg-teal/10 transition-colors">トップに戻る</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="relative z-10 border-t border-teal/10 py-8 px-4">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-soft/30 text-xs">
+            <p>&copy; 2026 発達特性とうまく付き合うための研究所 All Rights Reserved.</p>
+            <div class="flex gap-6">
+                <a href="privacy.html" class="hover:text-teal transition-colors">プライバシーポリシー</a>
+                <a href="tokushoho.html" class="hover:text-teal transition-colors">特定商取引法に基づく表記</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Particles
+        const particlesEl = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const p = document.createElement('div'); p.className = 'particle';
+            const sz = Math.random() * 2 + 1;
+            p.style.width = sz+'px'; p.style.height = sz+'px';
+            p.style.background = 'rgba(78, 205, 196, 0.5)';
+            p.style.left = Math.random()*100+'%'; p.style.top = Math.random()*100+'%';
+            p.style.setProperty('--duration', (Math.random()*3+2)+'s');
+            p.style.animationDelay = Math.random()*5+'s';
+            particlesEl.appendChild(p);
+        }
+
+        // Plan data
+        const plans = {
+            light: { name: '特性クイック診断', desc: 'オンライン30分・診断レポート付き', price: 5000 },
+            standard: { name: '特性把握セッション', desc: 'オンライン90分・調整プラン付き', price: 15000 },
+            premium: { name: '継続調整プログラム', desc: '月2回セッション+LINE相談', price: 39800 }
+        };
+
+        let selectedPlan = null;
+
+        // URL param
+        const urlParams = new URLSearchParams(window.location.search);
+        const planParam = urlParams.get('plan');
+        if (planParam && plans[planParam]) {
+            selectPlan(planParam);
+        }
+
+        // Plan selection
+        document.querySelectorAll('.plan-btn').forEach(btn => {
+            btn.addEventListener('click', () => selectPlan(btn.dataset.plan));
+        });
+
+        function selectPlan(planId) {
+            selectedPlan = planId;
+            document.querySelectorAll('.plan-btn').forEach(b => {
+                b.classList.remove('border-teal', 'bg-deep-teal/30');
+                b.classList.add('border-soft/10');
+            });
+            const activeBtn = document.querySelector(`[data-plan="${planId}"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('border-teal', 'bg-deep-teal/30');
+                activeBtn.classList.remove('border-soft/10');
+            }
+            showStep(2);
+        }
+
+        function showStep(step) {
+            ['step1','step2','step3','step-complete'].forEach(id => document.getElementById(id).classList.add('hidden'));
+            if (step === 1) document.getElementById('step1').classList.remove('hidden');
+            if (step === 2) {
+                document.getElementById('step2').classList.remove('hidden');
+                updateStepIndicator(2);
+            }
+            if (step === 3) {
+                document.getElementById('step3').classList.remove('hidden');
+                const plan = plans[selectedPlan];
+                document.getElementById('selected-plan-name').textContent = plan.name;
+                document.getElementById('selected-plan-desc').textContent = plan.desc;
+                document.getElementById('selected-plan-price').textContent = '¥' + plan.price.toLocaleString();
+                updateStepIndicator(3);
+            }
+            if (step === 4) {
+                document.getElementById('step-complete').classList.remove('hidden');
+            }
+        }
+
+        function updateStepIndicator(step) {
+            for (let i = 1; i <= 3; i++) {
+                const ind = document.getElementById(`step${i}-indicator`);
+                const circle = ind.querySelector('div');
+                const text = ind.querySelector('span');
+                if (i <= step) {
+                    circle.className = 'w-8 h-8 rounded-full bg-teal text-dark-bg flex items-center justify-center text-xs font-bold';
+                    if (text) text.className = 'text-teal hidden sm:inline';
+                } else {
+                    circle.className = 'w-8 h-8 rounded-full border border-soft/30 text-soft/50 flex items-center justify-center text-xs';
+                    if (text) text.className = 'text-soft/50 hidden sm:inline';
+                }
+            }
+        }
+
+        document.getElementById('back-to-step1').addEventListener('click', () => { showStep(1); updateStepIndicator(1); });
+        document.getElementById('to-step3').addEventListener('click', () => showStep(3));
+        document.getElementById('back-to-step2').addEventListener('click', () => { showStep(2); updateStepIndicator(2); });
+        document.getElementById('pay-btn').addEventListener('click', () => showStep(4));
+    </script>
+</body>
+</html>

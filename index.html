@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>発達特性とうまく付き合うための研究所 | 生きづらさを、調整し直す</title>
+    <meta name="description" content="発達特性は欠陥ではありません。特性を整理し、環境を調整することで、あなたらしく力を発揮できる毎日へ。LINE登録で無料特性チェックをプレゼント。">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-bg': '#0F1628',
+                        'midnight': '#1A2640',
+                        'deep-teal': '#1A3A4A',
+                        'teal': '#4ECDC4',
+                        'teal-dark': '#3BA89F',
+                        'warm': '#D4A574',
+                        'warm-light': '#E8C49A',
+                        'soft': '#B5C4D4',
+                        'sage': '#7BA68D',
+                    },
+                    fontFamily: {
+                        'serif-jp': ['"Noto Serif JP"', 'serif'],
+                        'sans-jp': ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Noto Sans JP', sans-serif; }
+        .font-serif-jp { font-family: 'Noto Serif JP', serif; }
+
+        /* Particles */
+        .particles {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: float-particle var(--duration) ease-in-out infinite;
+        }
+        @keyframes float-particle {
+            0%, 100% { opacity: 0.15; transform: translateY(0px); }
+            50% { opacity: 0.6; transform: translateY(-20px); }
+        }
+
+        /* Glow */
+        .glow-teal {
+            box-shadow: 0 0 30px rgba(78, 205, 196, 0.2), 0 0 60px rgba(78, 205, 196, 0.08);
+        }
+        .glow-text {
+            text-shadow: 0 0 20px rgba(78, 205, 196, 0.4), 0 0 40px rgba(78, 205, 196, 0.15);
+        }
+
+        /* Gradient orb */
+        .orb-glow {
+            background: radial-gradient(circle, rgba(78, 205, 196, 0.1) 0%, transparent 70%);
+            position: absolute;
+            width: 600px; height: 600px;
+            border-radius: 50%;
+            top: -200px; right: -100px;
+            z-index: 0;
+        }
+
+        /* Gradient divider */
+        .divider-teal {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #4ECDC4, transparent);
+        }
+
+        /* Card hover */
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(78, 205, 196, 0.12);
+        }
+
+        /* Fade in */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Float */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        .float { animation: float 6s ease-in-out infinite; }
+
+        /* CTA pulse */
+        @keyframes pulse-teal {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(78, 205, 196, 0.4); }
+            50% { box-shadow: 0 0 0 15px rgba(78, 205, 196, 0); }
+        }
+        .pulse-teal { animation: pulse-teal 2s ease-in-out infinite; }
+
+        /* Scroll indicator */
+        @keyframes bounce-down {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+    </style>
+</head>
+<body class="bg-dark-bg text-white overflow-x-hidden">
+
+    <!-- Particles Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-dark-bg/80 backdrop-blur-md border-b border-teal/10">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="font-serif-jp text-teal text-lg tracking-wider">
+                発達特性研究所
+            </a>
+            <div class="hidden md:flex items-center gap-8 text-sm text-soft">
+                <a href="#about" class="hover:text-teal transition-colors">私たちについて</a>
+                <a href="#services" class="hover:text-teal transition-colors">サービス</a>
+                <a href="#testimonials" class="hover:text-teal transition-colors">体験者の声</a>
+                <a href="#faq" class="hover:text-teal transition-colors">よくある質問</a>
+                <a href="#cta" class="bg-teal/20 border border-teal/50 text-teal px-4 py-2 rounded-full hover:bg-teal/30 transition-all text-xs tracking-wider">
+                    LINE登録はこちら
+                </a>
+            </div>
+            <button id="menu-toggle" class="md:hidden text-teal">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-midnight/95 backdrop-blur-md border-t border-teal/10">
+            <div class="px-4 py-6 flex flex-col gap-4 text-sm text-soft">
+                <a href="#about" class="hover:text-teal transition-colors py-2">私たちについて</a>
+                <a href="#services" class="hover:text-teal transition-colors py-2">サービス</a>
+                <a href="#testimonials" class="hover:text-teal transition-colors py-2">体験者の声</a>
+                <a href="#faq" class="hover:text-teal transition-colors py-2">よくある質問</a>
+                <a href="#cta" class="bg-teal/20 border border-teal/50 text-teal px-4 py-3 rounded-full text-center hover:bg-teal/30 transition-all text-xs tracking-wider mt-2">
+                    LINE登録はこちら
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div class="orb-glow"></div>
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <!-- Icon -->
+            <div class="float mb-8">
+                <div class="inline-block text-7xl md:text-8xl opacity-80">
+                    &#x1F331;
+                </div>
+            </div>
+
+            <p class="text-teal/80 text-sm tracking-[0.3em] uppercase mb-6 font-sans-jp">
+                Adjustment, Not Fixing
+            </p>
+
+            <h1 class="font-serif-jp text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 glow-text">
+                <span class="text-teal">生きづらさ</span>を、<br>
+                <span class="text-warm">調整</span>し直す。
+            </h1>
+
+            <p class="text-soft/70 text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+                発達特性は、欠陥ではありません。<br>
+                ただ、標準設計と合わないことがあるだけです。<br>
+                合わないなら、自分を変えるのではなく、<span class="text-teal">調整を変えればいい。</span>
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#cta" class="bg-gradient-to-r from-teal to-teal-dark text-dark-bg font-bold px-8 py-4 rounded-full text-sm tracking-wider hover:scale-105 transition-transform pulse-teal">
+                    LINE登録で無料特性チェック
+                </a>
+                <a href="#services" class="border border-soft/30 text-soft px-8 py-4 rounded-full text-sm tracking-wider hover:border-teal/50 hover:text-teal transition-all">
+                    サービスを見る
+                </a>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="mt-20 text-soft/40" style="animation: bounce-down 2s ease-in-out infinite;">
+                <svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="divider-teal max-w-md mx-auto"></div>
+
+    <!-- Stats Banner -->
+    <section class="py-16 px-4">
+        <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center fade-in">
+            <div>
+                <div class="text-3xl md:text-4xl font-serif-jp text-teal font-bold">1,000+</div>
+                <div class="text-soft/60 text-sm mt-2">相談実績</div>
+            </div>
+            <div>
+                <div class="text-3xl md:text-4xl font-serif-jp text-teal font-bold">96%</div>
+                <div class="text-soft/60 text-sm mt-2">満足度</div>
+            </div>
+            <div>
+                <div class="text-3xl md:text-4xl font-serif-jp text-teal font-bold">92%</div>
+                <div class="text-soft/60 text-sm mt-2">改善実感率</div>
+            </div>
+            <div>
+                <div class="text-3xl md:text-4xl font-serif-jp text-teal font-bold">300+</div>
+                <div class="text-soft/60 text-sm mt-2">LINE登録者</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider-teal max-w-md mx-auto"></div>
+
+    <!-- Message Section -->
+    <section class="py-24 px-4">
+        <div class="max-w-3xl mx-auto fade-in">
+            <div class="text-center mb-12">
+                <p class="text-teal/80 text-sm tracking-[0.2em] mb-4">MESSAGE</p>
+                <h2 class="font-serif-jp text-3xl md:text-4xl text-white mb-8">
+                    もしかして、<span class="text-warm">こんなこと</span>で<br>悩んでいませんか？
+                </h2>
+            </div>
+            <div class="space-y-4 max-w-xl mx-auto">
+                <div class="flex items-start gap-4 bg-midnight/60 border border-soft/10 rounded-xl p-5">
+                    <span class="text-warm text-xl mt-0.5">&#x25B6;</span>
+                    <p class="text-soft/80 text-sm leading-relaxed">努力しているのに、なぜか評価されない</p>
+                </div>
+                <div class="flex items-start gap-4 bg-midnight/60 border border-soft/10 rounded-xl p-5">
+                    <span class="text-warm text-xl mt-0.5">&#x25B6;</span>
+                    <p class="text-soft/80 text-sm leading-relaxed">人より疲れやすい。休日は寝て終わってしまう</p>
+                </div>
+                <div class="flex items-start gap-4 bg-midnight/60 border border-soft/10 rounded-xl p-5">
+                    <span class="text-warm text-xl mt-0.5">&#x25B6;</span>
+                    <p class="text-soft/80 text-sm leading-relaxed">なぜか同じ失敗を繰り返してしまう</p>
+                </div>
+                <div class="flex items-start gap-4 bg-midnight/60 border border-soft/10 rounded-xl p-5">
+                    <span class="text-warm text-xl mt-0.5">&#x25B6;</span>
+                    <p class="text-soft/80 text-sm leading-relaxed">周りと同じようにできない自分を責めてしまう</p>
+                </div>
+                <div class="flex items-start gap-4 bg-midnight/60 border border-soft/10 rounded-xl p-5">
+                    <span class="text-warm text-xl mt-0.5">&#x25B6;</span>
+                    <p class="text-soft/80 text-sm leading-relaxed">自分の特性をどう扱えばいいかわからない</p>
+                </div>
+            </div>
+            <div class="text-center mt-10">
+                <p class="text-soft/60 text-sm leading-relaxed">
+                    それは、<span class="text-teal font-medium">あなたの努力不足ではありません。</span><br>
+                    多くの場合、「特性に合わない環境」と「調整されていない働き方」が原因です。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider-teal max-w-md mx-auto"></div>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 px-4">
+        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+            <div class="fade-in">
+                <div class="relative">
+                    <div class="w-72 h-72 md:w-80 md:h-80 mx-auto rounded-full bg-gradient-to-br from-deep-teal to-midnight border-2 border-teal/30 flex items-center justify-center glow-teal">
+                        <span class="text-8xl">&#x1F9E9;</span>
+                    </div>
+                    <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-midnight border border-teal/30 rounded-full px-6 py-2">
+                        <span class="text-teal text-sm font-serif-jp tracking-wider">特性調整の専門家</span>
+                    </div>
+                </div>
+            </div>
+            <div class="fade-in">
+                <p class="text-teal/80 text-sm tracking-[0.2em] mb-4">ABOUT</p>
+                <h2 class="font-serif-jp text-3xl md:text-4xl text-white mb-6">
+                    <span class="text-teal">私たち</span>のアプローチ
+                </h2>
+                <div class="space-y-4 text-soft/70 leading-relaxed text-sm">
+                    <p>
+                        私たちは、発達特性を「治す」とは言いません。<br>
+                        医者でもなく、診断も行いません。
+                    </p>
+                    <p>
+                        代わりに、4つのステップで「調整」します：
+                    </p>
+                    <div class="space-y-2 ml-2">
+                        <div class="flex items-center gap-3">
+                            <span class="text-teal font-bold text-lg">1.</span>
+                            <span>特性を<span class="text-white">整理</span>する</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-teal font-bold text-lg">2.</span>
+                            <span>つまずきパターンを<span class="text-white">特定</span>する</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-teal font-bold text-lg">3.</span>
+                            <span>合わない環境を<span class="text-white">明確に</span>する</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-teal font-bold text-lg">4.</span>
+                            <span>力を発揮できる環境を<span class="text-white">調整</span>する</span>
+                        </div>
+                    </div>
+                    <p class="mt-4">
+                        感情論でもなく、根性論でもなく。<br>
+                        <span class="text-teal font-medium">調整で、変える。</span>
+                    </p>
+                </div>
+                <div class="mt-8 flex flex-wrap gap-3">
+                    <span class="border border-teal/30 text-teal/80 text-xs px-4 py-2 rounded-full">ADHD</span>
+                    <span class="border border-teal/30 text-teal/80 text-xs px-4 py-2 rounded-full">ASD</span>
+                    <span class="border border-teal/30 text-teal/80 text-xs px-4 py-2 rounded-full">環境調整</span>
+                    <span class="border border-teal/30 text-teal/80 text-xs px-4 py-2 rounded-full">社会人向け</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider-teal max-w-md mx-auto"></div>
+
+    <!-- Empathy Section -->
+    <section class="py-24 px-4">
+        <div class="max-w-3xl mx-auto text-center fade-in">
+            <p class="text-warm/80 text-sm tracking-[0.2em] mb-4">WITH YOU</p>
+            <h2 class="font-serif-jp text-3xl md:text-4xl text-white mb-8">
+                それでも、<span class="text-warm">寄り添う</span>
+            </h2>
+            <div class="bg-midnight/60 border border-soft/10 rounded-2xl p-8 md:p-12 text-left">
+                <div class="space-y-4 text-soft/70 text-sm leading-relaxed">
+                    <p>特性を語るとき、そこには必ず「傷」があります。</p>
+                    <p class="text-soft/50">
+                        理解されなかった経験。<br>
+                        否定された記憶。<br>
+                        自分を責めた時間。
+                    </p>
+                    <p>私たちはそれを<span class="text-white">軽く扱いません。</span></p>
+                    <div class="border-l-2 border-teal/50 pl-6 my-6">
+                        <p class="text-white text-base">
+                            まずは、整理する。<br>
+                            責めない。<br>
+                            急がせない。
+                        </p>
+                    </div>
+                    <p>
+                        そのうえで、どうすれば<span class="text-teal">楽に力を出せるか</span>を一緒に考えます。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider-teal max-w-md mx-auto"></div>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <p class="text-teal/80 text-sm tracking-[0.2em] mb-4">SERVICES</p>
+                <h2 class="font-serif-jp text-3xl md:text-4xl text-white mb-4">サービスメニュー</h2>
+                <p class="text-soft/60 text-sm max-w-lg mx-auto">
+                    あなたの状況に合わせて、3つのプランをご用意しました。
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Plan 1: Light -->
+                <div class="service-card bg-midnight/60 border border-soft/10 rounded-2xl p-8 text-center fade-in">
+                    <div class="text-5xl mb-6">&#x1F50D;</div>
+                    <h3 class="font-serif-jp text-xl text-soft mb-2">特性クイック診断</h3>
+                    <p class="text-teal/80 text-xs tracking-wider mb-4">QUICK ASSESSMENT</p>
+                    <div class="my-6">
+                        <span class="text-4xl font-serif-jp text-white">5,000</span>
+                        <span class="text-soft/60 text-sm">円（税込）</span>
+                    </div>
+                    <ul class="text-left text-sm text-soft/60 space-y-3 mb-8">
+                        <li class="flex items-start gap-2">
+                            <span class="text-teal mt-0.5">&#x2713;</span>
+                            <span>オンライン完結（約30分）</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-teal mt-0.5">&#x2713;</span>
+                            <span>あなたの特性傾向を整理</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-teal mt-0.5">&#x2713;</span>
+                            <span>得意・苦手な環境を言語化</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-teal mt-0.5">&#x2713;</span>
+                            <span>診断レポート（PDF）をお届け</span>
+                        </li>
+                    </ul>
+                    <a href="payment.html?plan=light" class="block border border-teal/40 text-teal py-3 rounded-full text-sm hover:bg-teal/10 transition-colors">
+                        このプランを申し込む
+                    </a>
+                    <p class="text-soft/40 text-xs mt-4">まずは自分を知りたい方に</p>
+                </div>
+
+                <!-- Plan 2: Standard (Featured) -->
+                <div class="service-card bg-gradient-to-b from-deep-teal/40 to-midnight/60 border border-teal/30 rounded-2xl p-8 text-center relative fade-in glow-teal">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-teal text-dark-bg text-xs font-bold px-6 py-1.5 rounded-full tracking-wider">
+                        おすすめ
+                    </div>
+                    <div class="text-5xl mb-6">&#x1F9E9;</div>
+                    <h3 class="font-serif-jp text-xl text-white mb-2">特性把握セッション</h3>
+                    <p class="text-teal/80 text-xs tracking-wider mb-4">FULL SESSION</p>
+                    <div class="my-6">
+                        <span class="text-4xl font-serif-jp text-teal">15,000</span>
+                        <span class="text-soft/60 text-sm">円（税込）</span>
+                    </div>
+                    <ul class="text-left text-sm text-soft/70 space-y-3 mb-8">
+                        <li class="flex items-start gap-2">
+                            <span class="text-teal mt-0.5">&#x2713;</span>
+                            <span>オンライン1対1（90分）</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-teal mt-0.5">&#x2713;</span>
+                            <span>クイック診断の全内容を含む</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-teal mt-0.5">&#x2713;</span>
+                            <span>過去の失敗パターン分析</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-teal mt-0.5">&#x2713;</span>
+                            <span>あなた専用の調整プラン作成</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-teal mt-0.5">&#x2713;</span>
+                            <span>セッション後1回の追加質問OK</span>
+                        </li>
+                    </ul>
+                    <a href="payment.html?plan=standard" class="block bg-gradient-to-r from-teal to-teal-dark text-dark-bg font-bold py-3 rounded-full text-sm hover:scale-105 transition-transform">
+                        このプランを申し込む
+                    </a>
+                    <p class="text-teal/60 text-xs mt-4">最も選ばれているプラン</p>
+                </div>
+
+                <!-- Plan 3: Premium -->
+                <div class="service-card bg-midnight/60 border border-soft/10 rounded-2xl p-8 text-center fade-in">
+                    <div class="text-5xl mb-6">&#x1F331;</div>
+                    <h3 class="font-serif-jp text-xl text-soft mb-2">継続調整プログラム</h3>
+                    <p class="text-teal/80 text-xs tracking-wider mb-4">ONGOING SUPPORT</p>
+                    <div class="my-6">
+                        <span class="text-4xl font-serif-jp text-white">39,800</span>
+                        <span class="text-soft/60 text-sm">円/月（税込）</span>
+                    </div>
+                    <ul class="text-left text-sm text-soft/60 space-y-3 mb-8">
+                        <li class="flex items-start gap-2">
+                            <span class="text-teal mt-0.5">&#x2713;</span>
+                            <span>月2回のセッション（各60分）</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-teal mt-0.5">&#x2713;</span>
+                            <span>随時LINEでの相談OK</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-teal mt-0.5">&#x2713;</span>
+                            <span>調整プランの継続的な改善</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-teal mt-0.5">&#x2713;</span>
+                            <span>職場環境の調整アドバイス</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-teal mt-0.5">&#x2713;</span>
+                            <span>月次レポートで変化を可視化</span>
+                        </li>
+                    </ul>
+                    <a href="payment.html?plan=premium" class="block border border-teal/40 text-teal py-3 rounded-full text-sm hover:bg-teal/10 transition-colors">
+                        このプランを申し込む
+                    </a>
+                    <p class="text-soft/40 text-xs mt-4">本気で日常を変えたい方へ</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider-teal max-w-md mx-auto"></div>
+
+    <!-- Process Section -->
+    <section class="py-24 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <p class="text-teal/80 text-sm tracking-[0.2em] mb-4">FLOW</p>
+                <h2 class="font-serif-jp text-3xl md:text-4xl text-white mb-4">ご利用の流れ</h2>
+            </div>
+
+            <div class="space-y-8">
+                <div class="flex items-start gap-6 fade-in">
+                    <div class="flex-shrink-0 w-12 h-12 bg-deep-teal/60 border border-teal/30 rounded-full flex items-center justify-center">
+                        <span class="text-teal font-serif-jp text-lg">1</span>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-medium mb-1">LINE公式アカウントに登録</h3>
+                        <p class="text-soft/60 text-sm">まずはLINEで友だち追加。登録すると無料の特性クイックチェックをプレゼント。</p>
+                    </div>
+                </div>
+
+                <div class="ml-6 border-l border-teal/20 h-8"></div>
+
+                <div class="flex items-start gap-6 fade-in">
+                    <div class="flex-shrink-0 w-12 h-12 bg-deep-teal/60 border border-teal/30 rounded-full flex items-center justify-center">
+                        <span class="text-teal font-serif-jp text-lg">2</span>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-medium mb-1">無料特性チェックを受ける</h3>
+                        <p class="text-soft/60 text-sm">簡単な質問に答えるだけで、あなたの特性傾向を大まかに把握できます。</p>
+                    </div>
+                </div>
+
+                <div class="ml-6 border-l border-teal/20 h-8"></div>
+
+                <div class="flex items-start gap-6 fade-in">
+                    <div class="flex-shrink-0 w-12 h-12 bg-deep-teal/60 border border-teal/30 rounded-full flex items-center justify-center">
+                        <span class="text-teal font-serif-jp text-lg">3</span>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-medium mb-1">サービスを選択・お申し込み</h3>
+                        <p class="text-soft/60 text-sm">ご自身の状況に合わせたプランをお選びください。ご相談も歓迎です。</p>
+                    </div>
+                </div>
+
+                <div class="ml-6 border-l border-teal/20 h-8"></div>
+
+                <div class="flex items-start gap-6 fade-in">
+                    <div class="flex-shrink-0 w-12 h-12 bg-deep-teal/60 border border-teal/30 rounded-full flex items-center justify-center">
+                        <span class="text-teal font-serif-jp text-lg">4</span>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-medium mb-1">セッション＆調整プラン実践</h3>
+                        <p class="text-soft/60 text-sm">オンラインで特性を整理し、あなた専用の調整プランを一緒に作成。日常で実践していきます。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider-teal max-w-md mx-auto"></div>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-24 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <p class="text-teal/80 text-sm tracking-[0.2em] mb-4">VOICE</p>
+                <h2 class="font-serif-jp text-3xl md:text-4xl text-white mb-4">体験者の声</h2>
+                <p class="text-soft/60 text-sm max-w-lg mx-auto">
+                    サービスをご利用いただいた方々からの声をご紹介します。
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-midnight/60 border border-soft/10 rounded-2xl p-8 fade-in">
+                    <div class="flex items-center gap-1 mb-4">
+                        <span class="text-warm">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                    </div>
+                    <p class="text-soft/70 text-sm leading-relaxed mb-6">
+                        「ADHDの傾向があると薄々感じていましたが、どうすればいいかわからず悩んでいました。セッションを受けて、自分の特性が"言語化"されたことで、職場での立ち回りが劇的に変わりました。」
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-deep-teal/60 rounded-full flex items-center justify-center text-teal text-sm">
+                            K
+                        </div>
+                        <div>
+                            <p class="text-white text-sm">K.M さん</p>
+                            <p class="text-soft/40 text-xs">32歳・IT企業勤務</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-midnight/60 border border-soft/10 rounded-2xl p-8 fade-in">
+                    <div class="flex items-center gap-1 mb-4">
+                        <span class="text-warm">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                    </div>
+                    <p class="text-soft/70 text-sm leading-relaxed mb-6">
+                        「転職を3回繰り返していて、自分に合う職場なんてないと諦めかけていました。調整プランで"自分に合わない環境の特徴"が明確になり、今の職場では2年以上続いています。」
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-deep-teal/60 rounded-full flex items-center justify-center text-teal text-sm">
+                            S
+                        </div>
+                        <div>
+                            <p class="text-white text-sm">S.T さん</p>
+                            <p class="text-soft/40 text-xs">28歳・事務職</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-midnight/60 border border-soft/10 rounded-2xl p-8 fade-in">
+                    <div class="flex items-center gap-1 mb-4">
+                        <span class="text-warm">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                    </div>
+                    <p class="text-soft/70 text-sm leading-relaxed mb-6">
+                        「"治す"ではなく"調整する"というアプローチに救われました。自分を否定せずに、環境の方を変えていいんだと気づけたことが一番の収穫です。継続プログラムで月ごとに改善を実感しています。」
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-deep-teal/60 rounded-full flex items-center justify-center text-teal text-sm">
+                            A
+                        </div>
+                        <div>
+                            <p class="text-white text-sm">A.N さん</p>
+                            <p class="text-soft/40 text-xs">36歳・フリーランス</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider-teal max-w-md mx-auto"></div>
+
+    <!-- Important Notice -->
+    <section class="py-16 px-4">
+        <div class="max-w-3xl mx-auto fade-in">
+            <div class="bg-midnight/60 border border-warm/20 rounded-2xl p-8">
+                <h3 class="text-warm text-sm font-medium mb-4 tracking-wider">&#x26A0; 私たちの立場について</h3>
+                <ul class="space-y-2 text-soft/60 text-sm">
+                    <li class="flex items-start gap-2">
+                        <span class="text-warm/60 mt-0.5">&#x2022;</span>
+                        <span>私たちは<span class="text-white">医者ではありません</span>。医療行為・診断は行いません。</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-warm/60 mt-0.5">&#x2022;</span>
+                        <span>「治す」とは言いません。特性と環境の<span class="text-white">調整</span>を支援します。</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-warm/60 mt-0.5">&#x2022;</span>
+                        <span>医療が必要な場合は、適切な専門機関をご案内いたします。</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-warm/60 mt-0.5">&#x2022;</span>
+                        <span>私たちが扱うのは、あなたの「<span class="text-teal">特性</span>」と「<span class="text-teal">環境</span>」です。</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider-teal max-w-md mx-auto"></div>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 px-4">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <p class="text-teal/80 text-sm tracking-[0.2em] mb-4">FAQ</p>
+                <h2 class="font-serif-jp text-3xl md:text-4xl text-white mb-4">よくある質問</h2>
+            </div>
+
+            <div class="space-y-4">
+                <div class="faq-item border border-soft/10 rounded-xl overflow-hidden fade-in">
+                    <button class="faq-toggle w-full px-6 py-5 text-left flex justify-between items-center hover:bg-midnight/40 transition-colors">
+                        <span class="text-white text-sm">発達障害の診断を受けていなくても利用できますか？</span>
+                        <svg class="w-5 h-5 text-teal transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5">
+                        <p class="text-soft/60 text-sm leading-relaxed">
+                            はい、診断の有無に関わらずご利用いただけます。「なんとなく生きづらい」「自分の特性を知りたい」という段階の方も多くいらっしゃいます。私たちは医療的な診断は行いませんが、あなたの特性傾向を整理し、日常に活かせる調整方法を一緒に考えます。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item border border-soft/10 rounded-xl overflow-hidden fade-in">
+                    <button class="faq-toggle w-full px-6 py-5 text-left flex justify-between items-center hover:bg-midnight/40 transition-colors">
+                        <span class="text-white text-sm">カウンセリングや医療とはどう違いますか？</span>
+                        <svg class="w-5 h-5 text-teal transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5">
+                        <p class="text-soft/60 text-sm leading-relaxed">
+                            医療機関では診断・投薬を行い、カウンセリングでは心理的なケアを行います。当研究所では、特性を「整理」し、日常の「環境調整」に特化しています。病気を治すのではなく、特性と環境のミスマッチを解消することが目的です。精神的なケアが必要な場合は、専門機関への紹介も行っています。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item border border-soft/10 rounded-xl overflow-hidden fade-in">
+                    <button class="faq-toggle w-full px-6 py-5 text-left flex justify-between items-center hover:bg-midnight/40 transition-colors">
+                        <span class="text-white text-sm">セッションはどのような形式で行いますか？</span>
+                        <svg class="w-5 h-5 text-teal transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5">
+                        <p class="text-soft/60 text-sm leading-relaxed">
+                            すべてオンライン（Zoom等のビデオ通話）で行います。ご自宅など、リラックスできる環境から参加いただけます。カメラのオン/オフは自由です。セッション後に、内容をまとめたレポートとあなた専用の調整プランをLINEでお届けします。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item border border-soft/10 rounded-xl overflow-hidden fade-in">
+                    <button class="faq-toggle w-full px-6 py-5 text-left flex justify-between items-center hover:bg-midnight/40 transition-colors">
+                        <span class="text-white text-sm">どのくらいで効果を実感できますか？</span>
+                        <svg class="w-5 h-5 text-teal transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5">
+                        <p class="text-soft/60 text-sm leading-relaxed">
+                            多くの方が、初回セッションで「自分の特性が言語化された」ことによる安心感を感じています。具体的な日常の変化は、調整プランを実践して2〜4週間ほどで実感される方が多いです。継続調整プログラムでは、月次レポートで変化を可視化しながら進めます。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item border border-soft/10 rounded-xl overflow-hidden fade-in">
+                    <button class="faq-toggle w-full px-6 py-5 text-left flex justify-between items-center hover:bg-midnight/40 transition-colors">
+                        <span class="text-white text-sm">支払い方法は何がありますか？</span>
+                        <svg class="w-5 h-5 text-teal transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5">
+                        <p class="text-soft/60 text-sm leading-relaxed">
+                            クレジットカード（Visa / Mastercard / AMEX / JCB）に対応しています。決済はStripe社のシステムを利用しており、カード情報は安全に管理されています。継続調整プログラムは月額自動引き落としとなります。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider-teal max-w-md mx-auto"></div>
+
+    <!-- CTA Section -->
+    <section id="cta" class="py-24 px-4 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-deep-teal/20 to-dark-bg"></div>
+        <div class="orb-glow" style="top: -300px; left: 50%; transform: translateX(-50%);"></div>
+
+        <div class="relative z-10 max-w-2xl mx-auto text-center fade-in">
+            <div class="text-6xl mb-8 float">&#x1F331;</div>
+
+            <h2 class="font-serif-jp text-3xl md:text-4xl text-white mb-6">
+                <span class="text-teal">LINE登録</span>で<br>
+                無料特性チェックをプレゼント
+            </h2>
+
+            <p class="text-soft/60 text-sm leading-relaxed mb-8 max-w-md mx-auto">
+                今すぐLINEに登録すると、あなたの特性傾向がわかる<br>
+                <span class="text-teal">「発達特性クイックチェック」</span>を無料でお届けします。
+            </p>
+
+            <div class="bg-midnight/80 border border-teal/20 rounded-2xl p-8 mb-8">
+                <h3 class="text-white text-sm font-medium mb-4">LINE登録特典</h3>
+                <ul class="text-left text-sm text-soft/70 space-y-3 max-w-sm mx-auto">
+                    <li class="flex items-start gap-3">
+                        <span class="text-teal text-lg">&#x1F381;</span>
+                        <span>無料 特性クイックチェック</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-teal text-lg">&#x1F4D6;</span>
+                        <span>「発達特性と上手に付き合う5つの調整術」PDF</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-teal text-lg">&#x1F331;</span>
+                        <span>毎月の「調整ヒント」メッセージ配信</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-teal text-lg">&#x1F48E;</span>
+                        <span>LINE限定の特別キャンペーン情報</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#" id="line-cta-btn" class="inline-flex items-center gap-3 bg-[#06C755] hover:bg-[#05B04C] text-white font-bold px-10 py-5 rounded-full text-base transition-all hover:scale-105 shadow-lg shadow-[#06C755]/30">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+                    </svg>
+                    LINE友だち追加
+                </a>
+                <a href="payment.html" class="inline-flex items-center gap-3 bg-gradient-to-r from-teal to-teal-dark text-dark-bg font-bold px-10 py-5 rounded-full text-base transition-all hover:scale-105">
+                    サービスを申し込む
+                </a>
+            </div>
+
+            <p class="text-soft/40 text-xs mt-6">
+                ※ 登録後すぐに無料チェックをお届けします<br>
+                ※ いつでもブロック可能です
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-teal/10 py-12 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="font-serif-jp text-teal text-lg mb-4">発達特性研究所</h3>
+                    <p class="text-soft/50 text-xs leading-relaxed">
+                        発達特性は欠陥ではありません。特性を整理し、環境を調整することで、あなたらしく力を発揮できる毎日へ。
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white text-sm font-medium mb-4">メニュー</h4>
+                    <ul class="space-y-2 text-soft/50 text-xs">
+                        <li><a href="#about" class="hover:text-teal transition-colors">私たちについて</a></li>
+                        <li><a href="#services" class="hover:text-teal transition-colors">サービスメニュー</a></li>
+                        <li><a href="payment.html" class="hover:text-teal transition-colors">お申し込み</a></li>
+                        <li><a href="#cta" class="hover:text-teal transition-colors">LINE登録</a></li>
+                        <li><a href="#testimonials" class="hover:text-teal transition-colors">体験者の声</a></li>
+                        <li><a href="#faq" class="hover:text-teal transition-colors">よくある質問</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white text-sm font-medium mb-4">SNS</h4>
+                    <ul class="space-y-2 text-soft/50 text-xs">
+                        <li><a href="#" class="hover:text-teal transition-colors">TikTok</a></li>
+                        <li><a href="#" class="hover:text-teal transition-colors">Instagram</a></li>
+                        <li><a href="#" class="hover:text-teal transition-colors">LINE公式アカウント</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="divider-teal mb-8"></div>
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-soft/30 text-xs">
+                <p>&copy; 2026 発達特性とうまく付き合うための研究所 All Rights Reserved.</p>
+                <div class="flex gap-6">
+                    <a href="privacy.html" class="hover:text-teal transition-colors">プライバシーポリシー</a>
+                    <a href="tokushoho.html" class="hover:text-teal transition-colors">特定商取引法に基づく表記</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Generate particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 80; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const size = Math.random() * 3 + 1;
+            const colors = ['rgba(78, 205, 196, 0.6)', 'rgba(212, 165, 116, 0.4)', 'rgba(181, 196, 212, 0.3)'];
+            p.style.width = size + 'px';
+            p.style.height = size + 'px';
+            p.style.background = colors[Math.floor(Math.random() * colors.length)];
+            p.style.left = Math.random() * 100 + '%';
+            p.style.top = Math.random() * 100 + '%';
+            p.style.setProperty('--duration', (Math.random() * 4 + 3) + 's');
+            p.style.animationDelay = Math.random() * 5 + 's';
+            particlesContainer.appendChild(p);
+        }
+
+        // Fade in on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('.faq-icon');
+                const isOpen = !content.classList.contains('hidden');
+
+                document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
+                document.querySelectorAll('.faq-icon').forEach(i => i.style.transform = 'rotate(0deg)');
+
+                if (!isOpen) {
+                    content.classList.remove('hidden');
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+
+        // Mobile menu
+        document.getElementById('menu-toggle').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-dark-bg/95');
+                nav.classList.remove('bg-dark-bg/80');
+            } else {
+                nav.classList.add('bg-dark-bg/80');
+                nav.classList.remove('bg-dark-bg/95');
+            }
+        });
+    </script>
+</body>
+</html>
