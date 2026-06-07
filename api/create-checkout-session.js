@@ -39,7 +39,11 @@ module.exports = async (req, res) => {
         return res.status(500).json({ error: 'Stripe secret key is not configured' });
     }
 
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+        httpClient: Stripe.createFetchHttpClient(),
+        maxNetworkRetries: 3,
+        timeout: 20000,
+    });
 
     try {
         const { planId, customerName, customerEmail, concern } = req.body;
